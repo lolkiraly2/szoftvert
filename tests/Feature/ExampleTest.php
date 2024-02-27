@@ -16,4 +16,11 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_asd(): void
+    {
+        $response = $this->get('/fdsa');
+
+        $response->assertStatus(404);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,9 +38,18 @@ Route::get('/tombki', function () {
     ]);
 });
 
-Route::get('/post/{cim}', function ($cim) {
-    $tomb = ["Lajos", "Béla", "Tibi"];
-    return view('post', [
-        "title" => $tomb[$cim] ?? abort(404) //Ha nem létezik a bal oldali dologm akkor csinálj valamit"Nincs ilyen bejegyzés!"
-    ]);
+// Route::get('/post/{cim}', function ($cim) {
+//     $tomb = ["Lajos", "Béla", "Tibi"];
+//     return view('post', [
+//         "title" => $tomb[$cim] ?? abort(404) //Ha nem létezik a bal oldali dologm akkor csinálj valamit"Nincs ilyen bejegyzés!"
+//     ]);
+// });
+
+Route::get('/post/{cim}', [
+    PostController ::class, 
+    "show"
+]);
+
+Route::get('pages/projects', function () {
+    return view('projects');
 });

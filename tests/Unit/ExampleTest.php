@@ -13,4 +13,9 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    /** @test */
+    public function isittrue():void{
+        $this->assertTrue(true);
+    }
 }
