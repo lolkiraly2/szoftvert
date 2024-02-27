@@ -29,3 +29,17 @@ Route::get('/request', function () {
         'title' => request("title")
     ]);
 });
+
+Route::get('/tombki', function () {
+    $tomb = ["Lajos", "Béla", "Tibi"];
+    return view('tombosNezet',[
+        "arr" => $tomb
+    ]);
+});
+
+Route::get('/post/{cim}', function ($cim) {
+    $tomb = ["Lajos", "Béla", "Tibi"];
+    return view('post', [
+        "title" => $tomb[$cim] ?? abort(404) //Ha nem létezik a bal oldali dologm akkor csinálj valamit"Nincs ilyen bejegyzés!"
+    ]);
+});
