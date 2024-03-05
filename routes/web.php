@@ -18,6 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/hello', function () {
+    $name = "Gergo";
+    return view("hello", [
+        'name' => $name
+    ]);
+});
+
 Route::get('/asdf', function () {
     $nev = "Gergő";
     return view("nezet",[
