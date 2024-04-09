@@ -15,4 +15,8 @@ class Post extends Model
     public static function getLength($post){
         return strlen($post);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

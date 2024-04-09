@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,20 +28,20 @@ Route::get('/hello', function () {
 
 Route::get('/asdf', function () {
     $nev = "Gergő";
-    return view("nezet",[
+    return view("nezet", [
         "name" => '<script> alert("Meg lettél támadva!") </script>'
     ]);
 });
 
 Route::get('/request', function () {
-    return view('request',[
+    return view('request', [
         'title' => request("title")
     ]);
 });
 
 Route::get('/tombki', function () {
     $tomb = ["Lajos", "Béla", "Tibi"];
-    return view('tombosNezet',[
+    return view('tombosNezet', [
         "arr" => $tomb
     ]);
 });
@@ -53,10 +54,21 @@ Route::get('/tombki', function () {
 // });
 
 Route::get('/post/{cim}', [
-    PostController ::class, 
+    PostController::class,
     "show"
 ]);
 
 Route::get('pages/projects', function () {
     return view('projects');
+});
+
+Route::get('/insert-post', function () {
+    DB::table('posts')->insert([
+        //'title' => fake()->sentence(1),
+        'slug' => fake()->slug(2),
+        'body' => fake()->paragraph(3),
+        'published_at' => fake()->dateTime(),
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
 });
