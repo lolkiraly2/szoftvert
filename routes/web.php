@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::get('/tombki', function () {
     ]);
 });
 
+
+
 // Route::get('/post/{cim}', function ($cim) {
 //     $tomb = ["Lajos", "Béla", "Tibi"];
 //     return view('post', [
@@ -72,3 +75,17 @@ Route::get('/insert-post', function () {
         'updated_at' => now(),
     ]);
 });
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::post('/categories', [CategoryController::class, 'store']);
+
+Route::get('/categories/create', [CategoryController::class, 'create']);
+
+Route::get('/categories/{id}', [CategoryController::class, 'show']);
+
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit']);
+
+Route::put('/categories/{id}', [CategoryController::class, 'update']);
+
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
