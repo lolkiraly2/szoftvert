@@ -12,15 +12,23 @@ class Post extends Model
     //protected $fillable = ['slug', 'body', 'published_at'];
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public static function getLength($post){
+    public static function getLength($post)
+    {
         return strlen($post);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

@@ -16,7 +16,14 @@
 <p>{{ $post->body }}</p>
 <a href="/posts">Vissza a listára</a>
 
-
+<h3>Kapcsolódó címkék:</h3>
+<ul>
+  @forelse ($post->tags as $tag)
+  <li><a href="{{ route('tags.show', $tag->id) }}">{{ $tag->name }}</a></li>
+  @empty
+  <li>Nincs hozzárendelve címke a blogbejegyzéshez</li>
+  @endforelse
+</ul>
 
 </body>
 

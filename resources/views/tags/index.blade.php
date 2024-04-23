@@ -10,22 +10,22 @@
 <body>
 
     <body>
-        <h1>Blogbejegyzések</h1>
-        <a href="{{ route('posts.create') }}">Létrehozás</a>
+        <h1>Címkék</h1>
+        <a href="{{ route('tags.create') }}">Létrehozás</a>
         <table>
             <thead>
                 <tr>
-                    <th>Cím</th>
-                    <th>Címkék száma:</th>
+                    <th>Neve</th>
+                    <th>Blogbejegyzések száma:</th>
                     <th>Funkciók</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($posts as $post)
+                @foreach ($tags as $tag)
                 <tr>
-                    <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->slug }}</a></td>
-                    <td>{{$post->tags->count() }}</td>
-                    <td><a href="{{ route('posts.edit', $post->id) }}">Szerkesztés</a></td>
+                    <td><a href="{{ route('tags.show', $tag->id) }}">{{ $tag->name }}</a></td>
+                    <td>{{$tag->numberOfPosts() }}</td>
+                    <td><a href="{{ route('tags.edit', $tag->id) }}">Szerkesztés</a></td>
                 </tr>
                 @endforeach
             </tbody>

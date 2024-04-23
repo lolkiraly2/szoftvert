@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 
@@ -93,3 +94,5 @@ Route::get('/insert-post', function () {
 Route::resource('categories', CategoryController::class);
 
 Route::resource('posts', PostController::class);
+
+Route::resource('tags', TagController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class PostController extends Controller
     {
         return view('posts.create', [
             'categories' => Category::orderBy('name')->get(),
+            'tags' => Tag::orderBy('name')->get(),
         ]);
     }
 
@@ -40,6 +42,7 @@ class PostController extends Controller
             'user_id' => 1,
             'published_at' => request('published_at'),
         ]);
+        $post->tags()->attach(request('tags'));
         return redirect(route('posts.index'));
     }
 
