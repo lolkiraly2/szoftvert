@@ -8,10 +8,11 @@
 </head>
 
 <body>
+    @include('inc.errors')
     <form action="/categories/{{ $category->id }}" method="POST">
         @csrf
         @method('put')
-        Kategória neve: <input type="text" name="name" value="{{ $category->name}}">
+        Kategória neve: <input type="text" name="name" value="{{ $category->name ?? old('name') }}">
         <input type="submit" value="Frissítés">
     </form>
 

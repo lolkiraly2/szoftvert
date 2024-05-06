@@ -24,6 +24,15 @@ class CategoryController extends Controller
     }
 
     function store() {
+        request()->validate([
+            'name' => 'required|max:5|unique:categories',
+          ], [
+            'required' => 'Nem lehet üres!',
+            'max' => 'The Category\'s name could be maximum :max characters.',
+            'unique' => 'The Category\'s name must be unique in categories table.',
+          ]);
+          
+          
         Category::create(request()->all());
         return redirect("/categories");
     }
@@ -35,6 +44,13 @@ class CategoryController extends Controller
     }
 
     function update($id) {
+        request()->validate([
+            'name' => 'required|max:5|unique:categories',
+          ], [
+            'required' => 'Nem lehet üres!',
+            'max' => 'The Category\'s name could be maximum :max characters.',
+            'unique' => 'The Category\'s name must be unique in categories table.',
+          ]);
         $category = Category::find($id);
         $category->update(request()->all());
         return redirect("/categories");
